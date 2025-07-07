@@ -1,11 +1,9 @@
 Just a lazy person aiming to become like someone
 
 Hi there! I'm Shubham 👋  
-This project is a personal roadmap and tracker for my journey to become a better computer vision researcher — inspired by brilliant minds like **Jiahui Yu**.
+This project is a personal roadmap and tracker for my journey to become a coder and researcher — inspired by **Jiahui Yu**.
 
-I’ve always admired how researchers like Jiahui contributed deeply to the field of generative vision models, especially papers like **DeepFill v2**. My goal is to walk a similar path — learning core concepts, reproducing key papers, and eventually doing my own research.
-
----
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## 🧭 Why This Project?
 

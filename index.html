@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Journey To Become A Coder</title>
+  <title>My Journey To Become A Coder </title>
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -18,14 +18,29 @@
       padding: 20px;
       text-align: center;
     }
+    .start-time {
+      margin-top: 10px;
+      font-size: 0.9em;
+      color: #dcdde1;
+    }
+    .progress-bar {
+      width: 100%;
+      background: #dcdde1;
+      border-radius: 10px;
+      margin: 20px auto;
+      height: 20px;
+      overflow: hidden;
+    }
+    .progress {
+      height: 100%;
+      background: #44bd32;
+      width: 0;
+      transition: width 0.3s ease;
+    }
     .container {
       padding: 20px;
       max-width: 900px;
       margin: auto;
-    }
-    h2 {
-      border-bottom: 2px solid #dcdde1;
-      padding-bottom: 5px;
     }
     .week {
       background: #dcdde1;
@@ -36,9 +51,9 @@
     .week h3 {
       margin-top: 0;
     }
-    label {
-      display: block;
-      margin: 5px 0;
+    .current-week {
+      border: 2px solid #44bd32;
+      background: #e6fbe6;
     }
     footer {
       text-align: center;
@@ -51,87 +66,110 @@
 <body>
   <header>
     <h1>Progress Tracker</h1>
-    <p>Tracking my learning journey in computer vision — week by week</p>
+    <p>time tracking</p>
+    <div class="start-time" id="startTime"></div>
+    <div class="progress-bar">
+      <div class="progress" id="progress"></div>
+    </div>
   </header>
 
   <div class="container">
     <section>
-      <h2>📅 Full Roadmap (With Checkboxes)</h2>
+      <h2>📅 This bar shows how far I’ve come since Day 1</h2>
+      <p>Every day counts. The tracker below automatically updates based on the number of days since I started this journey on <strong>July 8, 2025</strong>.</p>
 
-      <div class="week">
-        <h3>Week 1 – CV Fundamentals</h3>
-        <label><input type="checkbox"> Study CS231n Lectures 1–2</label>
-        <label><input type="checkbox"> Understand image representations, filters, kernels</label>
-        <label><input type="checkbox"> Implement CNN for CIFAR-10 in PyTorch</label>
-        <label><input type="checkbox"> Apply data augmentation with Albumentations</label>
-      </div>
-
-      <div class="week">
-        <h3>Week 2 – Transfer Learning & Evaluation</h3>
-        <label><input type="checkbox"> Use pretrained ResNet or VGG on custom dataset</label>
-        <label><input type="checkbox"> Understand evaluation metrics: accuracy, precision, recall</label>
-        <label><input type="checkbox"> Visualize predictions using matplotlib/Seaborn</label>
-      </div>
-
-      <div class="week">
-        <h3>Week 3 – Object Detection</h3>
-        <label><input type="checkbox"> Study YOLOv5 and SSD architectures</label>
-        <label><input type="checkbox"> Train YOLOv5 on small custom dataset</label>
-        <label><input type="checkbox"> Visualize detections with bounding boxes</label>
-      </div>
-
-      <div class="week">
-        <h3>Week 4 – Image Segmentation</h3>
-        <label><input type="checkbox"> Learn FCN, U-Net, DeepLabV3</label>
-        <label><input type="checkbox"> Implement binary segmentation using U-Net</label>
-        <label><input type="checkbox"> Train model on medical or custom image dataset</label>
-      </div>
-
-      <div class="week">
-        <h3>Week 5 – Generative Models (GANs)</h3>
-        <label><input type="checkbox"> Study DCGAN, Pix2Pix, CycleGAN basics</label>
-        <label><input type="checkbox"> Implement DCGAN for MNIST/CelebA</label>
-        <label><input type="checkbox"> Understand adversarial loss and generator-discriminator balance</label>
-      </div>
-
-      <div class="week">
-        <h3>Week 6–7 – Paper Reproduction (DeepFill v2)</h3>
-        <label><input type="checkbox"> Read and analyze DeepFill v2 paper</label>
-        <label><input type="checkbox"> Clone official repo and run test samples</label>
-        <label><input type="checkbox"> Train model on inpainting dataset (CelebA or Places2)</label>
-        <label><input type="checkbox"> Test on real-world images</label>
-      </div>
-
-      <div class="week">
-        <h3>Week 8 – Research Experiments</h3>
-        <label><input type="checkbox"> Modify DeepFill architecture or loss function</label>
-        <label><input type="checkbox"> Try inpainting on new domain (e.g., satellite, sketches)</label>
-        <label><input type="checkbox"> Write findings as blog or short paper</label>
-      </div>
-
-      <div class="week">
-        <h3>Week 9+ – Vision Transformers & Multimodal</h3>
-        <label><input type="checkbox"> Study Vision Transformer (ViT) and Swin Transformer</label>
-        <label><input type="checkbox"> Learn SimCLR / BYOL (self-supervised learning)</label>
-        <label><input type="checkbox"> Build mini multimodal project (OCR + LLM or image captioning)</label>
-        <label><input type="checkbox"> Start preparing arXiv or CVPR workshop submission</label>
+      <div id="roadmap">
+        <div class="week" id="week1">
+          <h3>Week 1 – CV Fundamentals</h3>
+          <ul>
+            <li>CS231n Lectures 1–2</li>
+            <li>Image representations, filters, kernels</li>
+            <li>Build CNN for CIFAR-10</li>
+            <li>Data Augmentation with Albumentations</li>
+          </ul>
+        </div>
+        <div class="week" id="week2">
+          <h3>Week 2 – Transfer Learning & Evaluation</h3>
+          <ul>
+            <li>Use pretrained ResNet/VGG</li>
+            <li>Understand accuracy, precision, recall</li>
+            <li>Visualize predictions</li>
+          </ul>
+        </div>
+        <div class="week" id="week3">
+          <h3>Week 3 – Object Detection</h3>
+          <ul>
+            <li>YOLOv5, SSD architecture</li>
+            <li>Train YOLOv5 on custom data</li>
+            <li>Draw bounding boxes</li>
+          </ul>
+        </div>
+        <div class="week" id="week4">
+          <h3>Week 4 – Image Segmentation</h3>
+          <ul>
+            <li>Learn FCN, U-Net, DeepLabV3</li>
+            <li>Binary segmentation using U-Net</li>
+            <li>Train model on medical dataset</li>
+          </ul>
+        </div>
+        <div class="week" id="week5">
+          <h3>Week 5 – Generative Models (GANs)</h3>
+          <ul>
+            <li>Study DCGAN, Pix2Pix, CycleGAN</li>
+            <li>Implement DCGAN on CelebA</li>
+            <li>Understand adversarial loss</li>
+          </ul>
+        </div>
+        <div class="week" id="week6">
+          <h3>Week 6–7 – DeepFill v2 Paper</h3>
+          <ul>
+            <li>Read DeepFill v2 paper</li>
+            <li>Clone repo, run test samples</li>
+            <li>Train on inpainting dataset</li>
+            <li>Test real-world images</li>
+          </ul>
+        </div>
+        <div class="week" id="week8">
+          <h3>Week 8 – Research Experiments</h3>
+          <ul>
+            <li>Modify DeepFill architecture</li>
+            <li>Apply to new domain (sketch/satellite)</li>
+            <li>Write blog or paper</li>
+          </ul>
+        </div>
+        <div class="week" id="week9">
+          <h3>Week 9+ – Vision Transformers</h3>
+          <ul>
+            <li>ViT, Swin Transformer</li>
+            <li>Learn SimCLR, BYOL</li>
+            <li>Multimodal project (OCR + LLM)</li>
+            <li>Begin arXiv/CVPR paper prep</li>
+          </ul>
+        </div>
       </div>
     </section>
   </div>
 
   <footer>
-    <p>Made by Shubham | Updated weekly</p>
+    <p>Made by Shubham | Updated daily</p>
   </footer>
 
   <script>
-    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-    checkboxes.forEach((cb, i) => {
-      const key = `cv-task-${i}`;
-      cb.checked = localStorage.getItem(key) === 'true';
-      cb.addEventListener('change', () => {
-        localStorage.setItem(key, cb.checked);
-      });
-    });
+    const startDate = new Date('2025-07-08');
+    const today = new Date();
+    const msPerDay = 1000 * 60 * 60 * 24;
+    const elapsedDays = Math.floor((today - startDate) / msPerDay);
+    const totalDays = 63;
+    const percent = Math.min((elapsedDays / totalDays) * 100, 100);
+
+    document.getElementById('progress').style.width = `${percent}%`;
+    document.getElementById('startTime').textContent = `📅 Journey started: ${startDate.toDateString()} | Days passed: ${elapsedDays}`;
+
+    const currentWeek = Math.floor(elapsedDays / 7) + 1;
+    const highlightWeek = document.getElementById(`week${currentWeek}`);
+    if (highlightWeek) {
+      highlightWeek.classList.add('current-week');
+    }
   </script>
 </body>
 </html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Journey To Become A Coder</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f5f6fa;
+      color: #2f3640;
+    }
+    header {
+      background: #273c75;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    .container {
+      padding: 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+    h2 {
+      border-bottom: 2px solid #dcdde1;
+      padding-bottom: 5px;
+    }
+    .week {
+      background: #dcdde1;
+      padding: 15px;
+      margin-bottom: 10px;
+      border-radius: 10px;
+    }
+    .week h3 {
+      margin-top: 0;
+    }
+    label {
+      display: block;
+      margin: 5px 0;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #dcdde1;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Progress Tracker</h1>
+    <p>Tracking my learning journey in computer vision — week by week</p>
+  </header>
+
+  <div class="container">
+    <section>
+      <h2>📅 Full Roadmap (With Checkboxes)</h2>
+
+      <div class="week">
+        <h3>Week 1 – CV Fundamentals</h3>
+        <label><input type="checkbox"> Study CS231n Lectures 1–2</label>
+        <label><input type="checkbox"> Understand image representations, filters, kernels</label>
+        <label><input type="checkbox"> Implement CNN for CIFAR-10 in PyTorch</label>
+        <label><input type="checkbox"> Apply data augmentation with Albumentations</label>
+      </div>
+
+      <div class="week">
+        <h3>Week 2 – Transfer Learning & Evaluation</h3>
+        <label><input type="checkbox"> Use pretrained ResNet or VGG on custom dataset</label>
+        <label><input type="checkbox"> Understand evaluation metrics: accuracy, precision, recall</label>
+        <label><input type="checkbox"> Visualize predictions using matplotlib/Seaborn</label>
+      </div>
+
+      <div class="week">
+        <h3>Week 3 – Object Detection</h3>
+        <label><input type="checkbox"> Study YOLOv5 and SSD architectures</label>
+        <label><input type="checkbox"> Train YOLOv5 on small custom dataset</label>
+        <label><input type="checkbox"> Visualize detections with bounding boxes</label>
+      </div>
+
+      <div class="week">
+        <h3>Week 4 – Image Segmentation</h3>
+        <label><input type="checkbox"> Learn FCN, U-Net, DeepLabV3</label>
+        <label><input type="checkbox"> Implement binary segmentation using U-Net</label>
+        <label><input type="checkbox"> Train model on medical or custom image dataset</label>
+      </div>
+
+      <div class="week">
+        <h3>Week 5 – Generative Models (GANs)</h3>
+        <label><input type="checkbox"> Study DCGAN, Pix2Pix, CycleGAN basics</label>
+        <label><input type="checkbox"> Implement DCGAN for MNIST/CelebA</label>
+        <label><input type="checkbox"> Understand adversarial loss and generator-discriminator balance</label>
+      </div>
+
+      <div class="week">
+        <h3>Week 6–7 – Paper Reproduction (DeepFill v2)</h3>
+        <label><input type="checkbox"> Read and analyze DeepFill v2 paper</label>
+        <label><input type="checkbox"> Clone official repo and run test samples</label>
+        <label><input type="checkbox"> Train model on inpainting dataset (CelebA or Places2)</label>
+        <label><input type="checkbox"> Test on real-world images</label>
+      </div>
+
+      <div class="week">
+        <h3>Week 8 – Research Experiments</h3>
+        <label><input type="checkbox"> Modify DeepFill architecture or loss function</label>
+        <label><input type="checkbox"> Try inpainting on new domain (e.g., satellite, sketches)</label>
+        <label><input type="checkbox"> Write findings as blog or short paper</label>
+      </div>
+
+      <div class="week">
+        <h3>Week 9+ – Vision Transformers & Multimodal</h3>
+        <label><input type="checkbox"> Study Vision Transformer (ViT) and Swin Transformer</label>
+        <label><input type="checkbox"> Learn SimCLR / BYOL (self-supervised learning)</label>
+        <label><input type="checkbox"> Build mini multimodal project (OCR + LLM or image captioning)</label>
+        <label><input type="checkbox"> Start preparing arXiv or CVPR workshop submission</label>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <p>Made by Shubham | Updated weekly</p>
+  </footer>
+
+  <script>
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach((cb, i) => {
+      const key = `cv-task-${i}`;
+      cb.checked = localStorage.getItem(key) === 'true';
+      cb.addEventListener('change', () => {
+        localStorage.setItem(key, cb.checked);
+      });
+    });
+  </script>
+</body>
+</html>

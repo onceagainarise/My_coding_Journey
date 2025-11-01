@@ -35,7 +35,7 @@ Each week focuses on a critical area of computer vision:
 ## 🌐 Live Version
 
 If you're curious, you can view the progress tracker here:  
-🔗 **[Live on Vercel](https://mycodingjourneyshubham.vercel.app/)** *(Replace with your link)*
+🔗 **[Live on Vercel](https://mycodingjourneyshubham.vercel.app/)** 
 
 ---
 

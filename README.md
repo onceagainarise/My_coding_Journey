@@ -16,19 +16,6 @@ I built this to track my progress week-by-week as I work through a self-designed
 The site is static, lightweight, and powered by `localStorage`, so only **I** can see and manage my progress. But it's public to keep me accountable and show others what I’m learning.
 Also it helps me to display my progess which i am too lazy to do on github or linkedin .
 
----
-
-## 🔍 What's Covered?
-
-Each week focuses on a critical area of computer vision:
-
-- Week 1–2: CNNs, PyTorch, Transfer Learning  
-- Week 3: Object Detection with YOLO  
-- Week 4: Image Segmentation  
-- Week 5: GANs (Pix2Pix, CycleGAN)  
-- Week 6–7: Paper Reproduction – DeepFill v2  
-- Week 8: Research Experiments  
-- Week 9+: Vision Transformers & Multimodal  
 
 ---
 
@@ -40,6 +27,7 @@ If you're curious, you can view the progress tracker here:
 ---
 
 ## 🧰 Tech Used
+
 
 - HTML + CSS for layout  
 - Vanilla JS + localStorage for state  

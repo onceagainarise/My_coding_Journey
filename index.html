@@ -1,175 +1,647 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Journey To Become A Coder </title>
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f5f6fa;
-      color: #2f3640;
-    }
-    header {
-      background: #273c75;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
-    .start-time {
-      margin-top: 10px;
-      font-size: 0.9em;
-      color: #dcdde1;
-    }
-    .progress-bar {
-      width: 100%;
-      background: #dcdde1;
-      border-radius: 10px;
-      margin: 20px auto;
-      height: 20px;
-      overflow: hidden;
-    }
-    .progress {
-      height: 100%;
-      background: #44bd32;
-      width: 0;
-      transition: width 0.3s ease;
-    }
-    .container {
-      padding: 20px;
-      max-width: 900px;
-      margin: auto;
-    }
-    .week {
-      background: #dcdde1;
-      padding: 15px;
-      margin-bottom: 10px;
-      border-radius: 10px;
-    }
-    .week h3 {
-      margin-top: 0;
-    }
-    .current-week {
-      border: 2px solid #44bd32;
-      background: #e6fbe6;
-    }
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: #dcdde1;
-      margin-top: 40px;
-    }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>6-Month ML Engineer Roadmap — Dark Dev Theme</title>
+<link rel="icon" href="data:,">
+<style>
+  :root{
+    --bg:#0b0b0c;
+    --panel:#0f1113;
+    --muted:#9aa7b2;
+    --accent1:#00f0a7; /* neon green */
+    --accent2:#3dd2ff; /* neon blue */
+    --danger:#ff5c7c;
+    --glass: rgba(255,255,255,0.03);
+    --card-shadow: 0 6px 18px rgba(0,0,0,0.6);
+    --radius:12px;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    background:linear-gradient(180deg, #050505 0%, #0b0b0c 60%);
+    color:#e6eef3;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    padding:28px;
+  }
+
+  header {
+    display:flex;
+    gap:16px;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:18px;
+  }
+  .title {
+    display:flex;
+    gap:14px;
+    align-items:center;
+  }
+  .logo {
+    width:56px;
+    height:56px;
+    border-radius:12px;
+    background: linear-gradient(135deg,var(--accent1), var(--accent2));
+    box-shadow: 0 6px 20px rgba(3,210,255,0.08), 0 2px 8px rgba(0,0,0,0.6);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:700;
+    color:#021114;
+    font-size:20px;
+  }
+  h1{
+    margin:0;
+    font-size:20px;
+  }
+  p.lead { margin:0; color:var(--muted); font-size:13px }
+
+  .topbar {
+    width:100%;
+    background:linear-gradient(90deg, rgba(61,210,255,0.06), rgba(0,240,167,0.03));
+    padding:14px;
+    border-radius:14px;
+    box-shadow: var(--card-shadow);
+    display:flex;
+    gap:18px;
+    align-items:center;
+  }
+
+  .progress-wrapper { flex:1; display:flex; flex-direction:column; gap:8px }
+  .progress-meta { display:flex; justify-content:space-between; align-items:center; gap:12px }
+  .meta-left { display:flex; gap:12px; align-items:center }
+  .progress-bar {
+    height:14px;
+    background:rgba(255,255,255,0.04);
+    border-radius:12px;
+    overflow:hidden;
+    position:relative;
+  }
+  .progress-fill {
+    height:100%;
+    width:0%;
+    background:linear-gradient(90deg,var(--accent2),var(--accent1));
+    box-shadow:0 6px 20px rgba(61,210,255,0.08);
+    transition: width 600ms cubic-bezier(.2,.9,.3,1);
+  }
+  .progress-label { font-size:13px; color:var(--muted) }
+
+  .controls { display:flex; gap:8px; align-items:center }
+  button {
+    background:transparent;
+    border:1px solid rgba(255,255,255,0.06);
+    color:var(--muted);
+    padding:8px 12px;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:13px;
+  }
+  button.primary{
+    background:linear-gradient(90deg,var(--accent2),var(--accent1));
+    color:#021114;
+    border:none;
+    font-weight:600;
+    box-shadow:0 8px 30px rgba(0,240,167,0.08);
+  }
+  main { margin-top:18px; display:grid; grid-template-columns: 1fr 360px; gap:18px; align-items:start; }
+  .roadmap {
+    background:var(--panel);
+    border-radius:14px;
+    padding:16px;
+    box-shadow:var(--card-shadow);
+    max-height:72vh;
+    overflow:auto;
+  }
+  .side {
+    background:var(--panel);
+    border-radius:14px;
+    padding:16px;
+    box-shadow:var(--card-shadow);
+    height:fit-content;
+  }
+
+  .week {
+    background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
+    border-radius:12px;
+    padding:12px;
+    margin-bottom:10px;
+    border:1px solid rgba(255,255,255,0.02);
+  }
+  .week.current {
+    border:1px solid rgba(61,210,255,0.18);
+    box-shadow: 0 8px 32px rgba(61,210,255,0.04);
+  }
+  .week h3 { margin:0 0 6px 0; font-size:15px }
+  .week .meta { font-size:12px; color:var(--muted); margin-bottom:8px }
+  .items { display:flex; flex-direction:column; gap:8px; margin-top:6px }
+  .item { display:flex; gap:10px; align-items:flex-start }
+  .item input[type="checkbox"]{
+    width:18px; height:18px; margin-top:2px; cursor:pointer;
+    accent-color: var(--accent1);
+  }
+  .item label { font-size:14px; color:#dff3ee }
+
+  .small { font-size:13px; color:var(--muted) }
+
+  .side .card { background:var(--glass); border-radius:10px; padding:12px; margin-bottom:12px }
+  .legend { display:flex; gap:10px; align-items:center; flex-wrap:wrap }
+  .legend .dot { width:10px; height:10px; border-radius:6px; }
+  .muted { color:var(--muted) }
+
+  .tools { display:flex; gap:8px; flex-wrap:wrap; margin-top:8px }
+  .footer { margin-top:16px; font-size:12px; color:var(--muted) }
+
+  /* responsive */
+  @media (max-width:920px){
+    main { grid-template-columns:1fr; }
+    .side { order:2 }
+  }
+</style>
 </head>
 <body>
   <header>
-    <h1>Progress Tracker</h1>
-    <p>time tracking</p>
-    <div class="start-time" id="startTime"></div>
-    <div class="progress-bar">
-      <div class="progress" id="progress"></div>
+    <div class="title">
+      <div class="logo">ML</div>
+      <div>
+        <h1>6-Month ML Engineer Roadmap</h1>
+        <p class="lead">Beginner → Intermediate • 9 hrs/day • ML Engineer + AI Dev focus (dark dev theme)</p>
+      </div>
+    </div>
+
+    <div style="text-align:right">
+      <div class="small muted">Theme: Dark Developer</div>
+      <div class="small muted">Static HTML • Local progress</div>
     </div>
   </header>
 
-  <div class="container">
-    <section>
-      <h2>📅 This bar shows how far I’ve come since Day 1</h2>
-      <p>Every day counts. The tracker below automatically updates based on the number of days since I started this journey on <strong>July 8, 2025</strong>.</p>
+  <section class="topbar">
+    <div class="progress-wrapper">
+      <div class="progress-meta">
+        <div class="meta-left">
+          <div style="font-weight:700">Roadmap Progress</div>
+          <div class="small muted" id="weeks-meta">Weeks done: 0 / 24</div>
+        </div>
+        <div class="progress-label" id="start-date-label">Start: —</div>
+      </div>
 
-      <div id="roadmap">
-        <div class="week" id="week1">
-          <h3>Week 1 – CV Fundamentals</h3>
-          <ul>
-            <li>well today was day one i watched standford university lectures and started with the fundamentals by the help of campusx and the book on programming computer vision by Jan Erik Solem.</li>
-            <li>today is was the second day and i have done comparision between cnn and ann , i have also learned to perform back propagation on cnn. </li>
-            <li>made a minor project around image classification , learned data augumentation and worked with pretrained models around ImageNET</li>
-          </ul>
+      <div class="progress-bar" aria-hidden="true">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px">
+        <div class="small muted" id="percent-label">0%</div>
+        <div class="small muted">Auto-starts from first open; current week is highlighted</div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button id="jump-current">Jump to Current Week</button>
+      <button id="export-btn" title="Export progress JSON">Export</button>
+      <button id="import-btn" title="Import progress JSON">Import</button>
+      <button id="reset-btn" title="Reset all progress">Reset</button>
+    </div>
+  </section>
+
+  <main>
+    <div class="roadmap" id="roadmap">
+      <!-- Weeks injected here -->
+    </div>
+
+    <aside class="side">
+      <div class="card">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <div>
+            <div style="font-weight:700">About this plan</div>
+            <div class="small muted">24 weeks • 6 months • Beginner→Intermediate</div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-weight:800; color:var(--accent1); font-size:18px" id="percent-side">0%</div>
+            <div class="small muted">complete</div>
+          </div>
         </div>
-        <div class="week" id="week2">
-          <h3>Week 2 – Transfer Learning & Evaluation</h3>
-          <ul>
-            <li>Use pretrained ResNet/VGG</li>
-            <li>Understand accuracy, precision, recall</li>
-            <li>Visualize predictions</li>
-          </ul>
-        </div>
-        <div class="week" id="week3">
-          <h3>Week 3 – Object Detection</h3>
-          <ul>
-            <li>YOLOv5, SSD architecture</li>
-            <li>Train YOLOv5 on custom data</li>
-            <li>Draw bounding boxes</li>
-          </ul>
-        </div>
-        <div class="week" id="week4">
-          <h3>Week 4 – Image Segmentation</h3>
-          <ul>
-            <li>Learn FCN, U-Net, DeepLabV3</li>
-            <li>Binary segmentation using U-Net</li>
-            <li>Train model on medical dataset</li>
-          </ul>
-        </div>
-        <div class="week" id="week5">
-          <h3>Week 5 – Generative Models (GANs)</h3>
-          <ul>
-            <li>Study DCGAN, Pix2Pix, CycleGAN</li>
-            <li>Implement DCGAN on CelebA</li>
-            <li>Understand adversarial loss</li>
-          </ul>
-        </div>
-        <div class="week" id="week6">
-          <h3>Week 6–7 – DeepFill v2 Paper</h3>
-          <ul>
-            <li>Read DeepFill v2 paper</li>
-            <li>Clone repo, run test samples</li>
-            <li>Train on inpainting dataset</li>
-            <li>Test real-world images</li>
-          </ul>
-        </div>
-        <div class="week" id="week8">
-          <h3>Week 8 – Research Experiments</h3>
-          <ul>
-            <li>Modify DeepFill architecture</li>
-            <li>Apply to new domain (sketch/satellite)</li>
-            <li>Write blog or paper</li>
-          </ul>
-        </div>
-        <div class="week" id="week9">
-          <h3>Week 9+ – Vision Transformers</h3>
-          <ul>
-            <li>ViT, Swin Transformer</li>
-            <li>Learn SimCLR, BYOL</li>
-            <li>Multimodal project (OCR + LLM)</li>
-            <li>Begin arXiv/CVPR paper prep</li>
-          </ul>
+        <div class="footer">This static HTML saves progress in your browser (localStorage). You can export/import JSON if you want to move progress to another device.</div>
+      </div>
+
+      <div class="card">
+        <div style="font-weight:700;margin-bottom:8px">Legend</div>
+        <div class="legend">
+          <div style="display:flex;gap:8px;align-items:center"><div class="dot" style="background:var(--accent1)"></div><div class="small">Completed item</div></div>
+          <div style="display:flex;gap:8px;align-items:center"><div class="dot" style="background:var(--accent2)"></div><div class="small">Current week</div></div>
+          <div style="display:flex;gap:8px;align-items:center"><div class="dot" style="background:rgba(255,255,255,0.04)"></div><div class="small">Pending</div></div>
         </div>
       </div>
-    </section>
-  </div>
 
-  <footer>
-    <p>Made by Shubham | Updated daily</p>
-  </footer>
+      <div class="card">
+        <div style="font-weight:700;margin-bottom:8px">Quick tips</div>
+        <ol class="small muted" style="padding-left:14px;margin:0">
+          <li>Work 9 hours/day but mix deep work + breaks (Pomodoro)</li>
+          <li>Push one project repo per month to GitHub</li>
+          <li>Track interviews & applications in a sheet</li>
+        </ol>
+      </div>
 
-  <script>
-    const startDate = new Date('2025-11-01');
+      <div class="card">
+        <div style="font-weight:700;margin-bottom:8px">Actions</div>
+        <div class="tools">
+          <button id="toggle-all">Toggle all visible week items</button>
+          <button id="download-pdf">Download Summary (Simple)</button>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+<script>
+/*
+  Static single-file 6-month roadmap (dark dev theme).
+  - Stores progress in localStorage under key 'mlroadmap_v1'
+  - On first run, sets startDate = today
+  - 24 weeks with detailed items (from user's plan)
+*/
+
+const PLAN = [
+  { week:1, title:"Python & Software Engineering Basics", items:[
+    "Python advanced: OOP, decorators, iterators, generators",
+    "Concurrency: multiprocessing & async",
+    "Debugging, profiling, logging",
+    "Build small CLI apps",
+    "Build simple API with FastAPI or Flask",
+    "Mini-project: API for movie recommendation (cosine similarity)"
+  ]},
+  { week:2, title:"Data Structures & Algorithms", items:[
+    "Arrays, Linked Lists, Stack, Queue",
+    "HashMap, Two Pointers, Sliding Window",
+    "Recursion & Backtracking basics",
+    "Solve 40–50 DSA problems (practice platforms)"
+  ]},
+  { week:3, title:"Math for ML", items:[
+    "Linear algebra: matrix ops, SVD, eigenvectors",
+    "Calculus: derivatives, chain rule, gradients",
+    "Probability & Statistics: Bayes, distributions, CIs"
+  ]},
+  { week:4, title:"ML Basics", items:[
+    "Train/validation/test splits & cross-validation",
+    "Bias vs variance, under/overfitting",
+    "Feature engineering basics",
+    "Optimization & regularization",
+    "Classical ML: LR, RF, SVM, NB, XGBoost",
+    "Project #1: ML pipeline for loan risk + FastAPI + Docker"
+  ]},
+  { week:5, title:"Model Selection & Evaluation", items:[
+    "Precision / Recall / F1 / ROC-AUC",
+    "PR curves, calibration, KS score",
+    "Confusion matrix analysis",
+    "A/B testing basics"
+  ]},
+  { week:6, title:"Feature Engineering & Experimentation", items:[
+    "Handling categorical variables, missing data, outliers",
+    "Feature transformations & selection",
+    "Feature stores concept",
+    "Experiment tracking basics (MLflow)"
+  ]},
+  { week:7, title:"Production ML Project (Part 1)", items:[
+    "Project scoping: fraud/anomaly detection",
+    "Data cleaning pipeline",
+    "Feature engineering pipeline",
+    "Experiment tracking setup (MLflow)"
+  ]},
+  { week:8, title:"Production ML Project (Part 2)", items:[
+    "Model training & selection",
+    "Packaging: FastAPI + Docker",
+    "Monitoring plan + alerting (Slack / Email)",
+    "Deliverables: README + architecture diagram"
+  ]},
+  { week:9, title:"Neural Networks & Training", items:[
+    "Autograd & backprop intuition",
+    "Losses, optimizers (SGD, Adam), LR scheduling",
+    "Vanishing/exploding gradients & fixes"
+  ]},
+  { week:10, title:"Computer Vision", items:[
+    "CNN basics, architectures (ResNet, EfficientNet)",
+    "Fine-tuning & transfer learning",
+    "Object detection intro (YOLO family)"
+  ]},
+  { week:11, title:"NLP Basics → Modern NLP", items:[
+    "Tokenization & embeddings",
+    "Attention mechanism",
+    "Transformer architectures (BERT, RoBERTa, T5)"
+  ]},
+  { week:12, title:"Deep Learning Project", items:[
+    "Pick a DL project (object detection, text classification, OCR)",
+    "Training on GPU (or cloud GPU)",
+    "Deploy GPU-backed inference endpoint"
+  ]},
+  { week:13, title:"Transformer Architecture Deep Dive", items:[
+    "QKV & scaled dot-product attention",
+    "Positional encodings",
+    "Efficiency: sparse attention, distillation concepts"
+  ]},
+  { week:14, title:"LLM Fine-Tuning", items:[
+    "LoRA / QLoRA fundamentals",
+    "PEFT libraries & workflow",
+    "RAG: retrieval-augmented generation basics"
+  ]},
+  { week:15, title:"Generative Models", items:[
+    "Diffusion models overview",
+    "Stable Diffusion fine-tuning workflow",
+    "Image generation pipelines"
+  ]},
+  { week:16, title:"Advanced AI Project", items:[
+    "Project: AI customer support (RAG + embeddings)",
+    "Vector DB: Weaviate / Pinecone / Milvus",
+    "Frontend + API + monitoring"
+  ]},
+  { week:17, title:"Docker + CI/CD", items:[
+    "Write efficient Dockerfiles",
+    "Container best practices",
+    "GitHub Actions for CI/CD pipelines"
+  ]},
+  { week:18, title:"Kubernetes & Cloud", items:[
+    "K8s basics: pods, deployments, services",
+    "High-level GPU scheduling concepts",
+    "Deploy ML jobs to AWS/GCP (high-level)"
+  ]},
+  { week:19, title:"ML System Design", items:[
+    "Designing recommender systems",
+    "Real-time inference & serving patterns",
+    "Feature store architecture & design"
+  ]},
+  { week:20, title:"Full ML System Project", items:[
+    "Implement end-to-end ML SaaS (recommendations)",
+    "Feature store (Feast or custom)",
+    "Canary rollout + monitoring (Grafana)"
+  ]},
+  { week:21, title:"Portfolio Finalization", items:[
+    "Polish GitHub repos with READMEs and demos",
+    "Build portfolio website with demos",
+    "Craft 4–6 technical blog posts"
+  ]},
+  { week:22, title:"Resume & Referrals", items:[
+    "Create ATS-optimized 1-page resume",
+    "Reach out to recruiters & alumni",
+    "Network for referrals & internships"
+  ]},
+  { week:23, title:"Interview Training", items:[
+    "Strong DSA practice (mock interviews)",
+    "ML system design mock interviews",
+    "Behavioral storytelling (STAR method)"
+  ]},
+  { week:24, title:"Apply & Iterate", items:[
+    "Apply to 12–15 companies/week",
+    "Track applications in a spreadsheet",
+    "Collect feedback & iterate on interview process"
+  ]}
+];
+
+// localStorage keys
+const STORAGE_KEY = 'mlroadmap_v1';
+const START_KEY = 'mlroadmap_start_v1';
+
+function isoDate(d){ return new Date(d).toISOString().split('T')[0]; }
+
+function getState(){
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if(!raw) {
+    // initialize with empty completed structure
+    const init = {};
+    PLAN.forEach(w => {
+      init['w'+w.week] = w.items.map(_=>false);
+    });
+    return init;
+  }
+  try { return JSON.parse(raw); } catch(e){ return {}; }
+}
+
+function saveState(state){ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+
+function getOrCreateStartDate(){
+  let s = localStorage.getItem(START_KEY);
+  if(!s){
     const today = new Date();
-    const msPerDay = 1000 * 60 * 60 * 24;
-    const elapsedDays = Math.floor((today - startDate) / msPerDay);
-    const totalDays = 365;
-    const percent = Math.min((elapsedDays / totalDays) * 100, 100);
+    s = today.toISOString();
+    localStorage.setItem(START_KEY, s);
+  }
+  return new Date(s);
+}
 
-    document.getElementById('progress').style.width = `${percent}%`;
-    document.getElementById('startTime').textContent = `📅 Journey started: ${startDate.toDateString()} | Days passed: ${elapsedDays}`;
+function resetAll(){
+  localStorage.removeItem(STORAGE_KEY);
+  localStorage.removeItem(START_KEY);
+  location.reload();
+}
 
-    const currentWeek = Math.floor(elapsedDays / 7) + 1;
-    const highlightWeek = document.getElementById(`week${currentWeek}`);
-    if (highlightWeek) {
-      highlightWeek.classList.add('current-week');
-    }
-  </script>
+// render weeks
+const roadmapEl = document.getElementById('roadmap');
+
+function render(){
+  roadmapEl.innerHTML = '';
+  const state = getState();
+  const startDate = getOrCreateStartDate();
+  document.getElementById('start-date-label').textContent = 'Start: ' + isoDate(startDate);
+
+  // compute current week index relative to start
+  const now = new Date();
+  const daysPassed = Math.floor((now - startDate) / (1000*60*60*24));
+  let currentWeekIndex = Math.floor(daysPassed / 7); // 0-based
+  if(currentWeekIndex < 0) currentWeekIndex = 0;
+  if(currentWeekIndex > PLAN.length - 1) currentWeekIndex = PLAN.length - 1;
+
+  let totalItems = 0, completedItems = 0;
+
+  PLAN.forEach((w, i) => {
+    const block = document.createElement('div');
+    block.className = 'week' + (i === currentWeekIndex ? ' current' : '');
+    block.id = 'week-'+w.week;
+
+    const h = document.createElement('h3');
+    h.textContent = `Week ${w.week} — ${w.title}`;
+    block.appendChild(h);
+
+    const m = document.createElement('div');
+    m.className = 'meta';
+    m.textContent = `Week ${w.week} of 24`;
+    block.appendChild(m);
+
+    const itemsDiv = document.createElement('div');
+    itemsDiv.className = 'items';
+
+    w.items.forEach((it, idx) => {
+      totalItems++;
+      const key = 'w'+w.week;
+      const completed = state[key] && state[key][idx];
+
+      if(completed) completedItems++;
+
+      const itemLine = document.createElement('div');
+      itemLine.className = 'item';
+
+      const cb = document.createElement('input');
+      cb.type = 'checkbox';
+      cb.checked = !!completed;
+      cb.dataset.week = w.week;
+      cb.dataset.idx = idx;
+      cb.id = `cb-${w.week}-${idx}`;
+
+      cb.addEventListener('change', (e) => {
+        const st = getState();
+        const wk = 'w'+e.target.dataset.week;
+        if(!st[wk]) st[wk] = PLAN[Number(e.target.dataset.week)-1].items.map(_=>false);
+        st[wk][Number(e.target.dataset.idx)] = e.target.checked;
+        saveState(st);
+        render();
+      });
+
+      const lab = document.createElement('label');
+      lab.setAttribute('for', cb.id);
+      lab.textContent = it;
+
+      itemLine.appendChild(cb);
+      itemLine.appendChild(lab);
+      itemsDiv.appendChild(itemLine);
+    });
+
+    block.appendChild(itemsDiv);
+    roadmapEl.appendChild(block);
+  });
+
+  // update progress
+  const percent = totalItems === 0 ? 0 : Math.round((completedItems/totalItems)*100);
+  document.getElementById('percent-label').textContent = percent + '%';
+  document.getElementById('percent-side').textContent = percent + '%';
+  document.getElementById('weeks-meta').textContent = `Weeks done: ${countFullyCompletedWeeks(getState())} / ${PLAN.length}`;
+
+  const fill = document.getElementById('progress-fill');
+  fill.style.width = percent + '%';
+  // progress color change
+  fill.style.boxShadow = `0 8px 26px rgba(61,210,255,0.06)`;
+
+  // store last rendering time
+  localStorage.setItem('mlroadmap_lastrender', new Date().toISOString());
+}
+
+// count weeks fully complete
+function countFullyCompletedWeeks(state){
+  let c=0;
+  PLAN.forEach(w=>{
+    const arr = state['w'+w.week] || [];
+    if(arr.length === w.items.length && arr.every(Boolean)) c++;
+  });
+  return c;
+}
+
+// Jump to current week button
+document.getElementById('jump-current').addEventListener('click', ()=> {
+  const startDate = getOrCreateStartDate();
+  const now = new Date();
+  const daysPassed = Math.floor((now - startDate) / (1000*60*60*24));
+  let currentWeekIndex = Math.floor(daysPassed / 7);
+  if(currentWeekIndex < 0) currentWeekIndex = 0;
+  if(currentWeekIndex > PLAN.length - 1) currentWeekIndex = PLAN.length - 1;
+  const id = 'week-' + PLAN[currentWeekIndex].week;
+  const el = document.getElementById(id);
+  if(el){
+    el.scrollIntoView({behavior:'smooth', block:'center'});
+    el.classList.add('current');
+    setTimeout(()=> el.classList.remove('current'), 2000);
+  }
+});
+
+// Reset
+document.getElementById('reset-btn').addEventListener('click', ()=>{
+  if(confirm('Reset all progress and start date?')) resetAll();
+});
+
+// Export JSON
+document.getElementById('export-btn').addEventListener('click', ()=>{
+  const payload = {
+    startDate: localStorage.getItem(START_KEY) || new Date().toISOString(),
+    progress: getState(),
+    exportedAt: new Date().toISOString()
+  };
+  const blob = new Blob([JSON.stringify(payload, null, 2)], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'mlroadmap-progress.json';
+  a.click();
+  URL.revokeObjectURL(url);
+});
+
+// Import JSON
+document.getElementById('import-btn').addEventListener('click', ()=>{
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = 'application/json';
+  input.onchange = e => {
+    const f = e.target.files[0];
+    if(!f) return;
+    const reader = new FileReader();
+    reader.onload = ev => {
+      try{
+        const obj = JSON.parse(ev.target.result);
+        if(obj && obj.progress){
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(obj.progress));
+          if(obj.startDate) localStorage.setItem(START_KEY, obj.startDate);
+          alert('Import successful. Reloading view.');
+          render();
+        } else {
+          alert('Invalid file format.');
+        }
+      } catch(err){ alert('Failed to parse JSON: '+err.message); }
+    };
+    reader.readAsText(f);
+  };
+  input.click();
+});
+
+// Toggle all visible week items
+document.getElementById('toggle-all').addEventListener('click', ()=>{
+  const checkboxes = Array.from(document.querySelectorAll('.roadmap input[type=checkbox]'));
+  if(checkboxes.length === 0) return;
+  // decide action: if more than half checked, then uncheck all; else check all
+  const checkedCount = checkboxes.filter(cb => cb.checked).length;
+  const toCheck = checkedCount < (checkboxes.length/2);
+  const state = getState();
+  checkboxes.forEach(cb => {
+    cb.checked = toCheck;
+    const wk = 'w'+cb.dataset.week;
+    if(!state[wk]) state[wk] = PLAN[Number(cb.dataset.week)-1].items.map(_=>false);
+    state[wk][Number(cb.dataset.idx)] = toCheck;
+  });
+  saveState(state);
+  render();
+});
+
+// Simple download summary as PDF (basic)
+document.getElementById('download-pdf').addEventListener('click', ()=>{
+  // Build summary HTML and open print dialog
+  const state = getState();
+  let html = '<html><head><title>ML Roadmap Summary</title><meta charset="utf-8"><style>body{font-family:Arial,sans-serif;color:#222}h1{font-size:18px}ul{margin:0;padding-left:18px}</style></head><body>';
+  html += `<h1>6-Month ML Roadmap Summary — Progress ${document.getElementById('percent-side').textContent}</h1>`;
+  PLAN.forEach(w=>{
+    html += `<h3>Week ${w.week} — ${w.title}</h3><ul>`;
+    w.items.forEach((it, idx)=>{
+      const done = (state['w'+w.week] && state['w'+w.week][idx]) ? '✓' : '◻';
+      html += `<li>${done} ${it}</li>`;
+    });
+    html += '</ul>';
+  });
+  html += '</body></html>';
+  const w = window.open('', '_blank');
+  w.document.write(html);
+  w.document.close();
+  w.print();
+});
+
+// on first load, ensure startDate exists
+getOrCreateStartDate();
+render();
+
+// auto-scroll to current week after small delay
+setTimeout(()=> document.getElementById('jump-current').click(), 700);
+</script>
 </body>
 </html>
-

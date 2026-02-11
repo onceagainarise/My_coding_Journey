@@ -263,138 +263,52 @@
 */
 
 const PLAN = [
-  { week:1, title:"Python & Software Engineering Basics", items:[
-    "Python advanced: OOP, decorators, iterators, generators",
-    "Concurrency: multiprocessing & async",
-    "Debugging, profiling, logging",
-    "Build small CLI apps",
-    "Build simple API with FastAPI or Flask",
-    "Mini-project: API for movie recommendation (cosine similarity)"
+  { week:1, title:"Backend Foundations + FastAPI Mastery", items:[
+    "Deep dive into HTTP (methods, status codes, headers, REST semantics)",
+    "Build structured FastAPI app (routers, services, schemas, models)",
+    "Pydantic validation + error handling",
+    "Async vs Sync (event loop, blocking vs non-blocking)",
+    "PostgreSQL setup locally + basic schema design",
+    "Mini Project: Auth-enabled CRUD API with PostgreSQL"
   ]},
-  { week:2, title:"Data Structures & Algorithms", items:[
-    "Arrays, Linked Lists, Stack, Queue",
-    "HashMap, Two Pointers, Sliding Window",
-    "Recursion & Backtracking basics",
-    "Solve 40–50 DSA problems (practice platforms)"
+
+  { week:2, title:"Database Engineering + Auth Systems", items:[
+    "PostgreSQL indexing, EXPLAIN ANALYZE, query optimization",
+    "Transactions & isolation levels",
+    "SQLAlchemy ORM vs Core",
+    "JWT authentication (access + refresh tokens)",
+    "Password hashing (bcrypt/argon2)",
+    "Build API key system (key generation, hashing, usage tracking)"
   ]},
-  { week:3, title:"Math for ML", items:[
-    "Linear algebra: matrix ops, SVD, eigenvectors",
-    "Calculus: derivatives, chain rule, gradients",
-    "Probability & Statistics: Bayes, distributions, CIs"
+
+  { week:3, title:"Production Patterns + Model Deployment", items:[
+    "Docker deep dive (multi-stage builds, slim images)",
+    "Gunicorn + Uvicorn worker configuration",
+    "Deploy FastAPI app on AWS EC2",
+    "Reverse proxy with Nginx",
+    "Deploy ML inference endpoint (synchronous + async pattern)",
+    "Redis caching + rate limiting per API key"
   ]},
-  { week:4, title:"ML Basics", items:[
-    "Train/validation/test splits & cross-validation",
-    "Bias vs variance, under/overfitting",
-    "Feature engineering basics",
-    "Optimization & regularization",
-    "Classical ML: LR, RF, SVM, NB, XGBoost",
-    "Project #1: ML pipeline for loan risk + FastAPI + Docker"
+
+  { week:4, title:"Scalability + Background Processing", items:[
+    "Celery or RQ background jobs",
+    "Message queue fundamentals (Redis / RabbitMQ)",
+    "Caching strategies (write-through vs write-back)",
+    "Designing idempotent APIs",
+    "Logging & structured logging (JSON logs)",
+    "Monitoring basics (Prometheus concepts)"
   ]},
-  { week:5, title:"Model Selection & Evaluation", items:[
-    "Precision / Recall / F1 / ROC-AUC",
-    "PR curves, calibration, KS score",
-    "Confusion matrix analysis",
-    "A/B testing basics"
-  ]},
-  { week:6, title:"Feature Engineering & Experimentation", items:[
-    "Handling categorical variables, missing data, outliers",
-    "Feature transformations & selection",
-    "Feature stores concept",
-    "Experiment tracking basics (MLflow)"
-  ]},
-  { week:7, title:"Production ML Project (Part 1)", items:[
-    "Project scoping: fraud/anomaly detection",
-    "Data cleaning pipeline",
-    "Feature engineering pipeline",
-    "Experiment tracking setup (MLflow)"
-  ]},
-  { week:8, title:"Production ML Project (Part 2)", items:[
-    "Model training & selection",
-    "Packaging: FastAPI + Docker",
-    "Monitoring plan + alerting (Slack / Email)",
-    "Deliverables: README + architecture diagram"
-  ]},
-  { week:9, title:"Neural Networks & Training", items:[
-    "Autograd & backprop intuition",
-    "Losses, optimizers (SGD, Adam), LR scheduling",
-    "Vanishing/exploding gradients & fixes"
-  ]},
-  { week:10, title:"Computer Vision", items:[
-    "CNN basics, architectures (ResNet, EfficientNet)",
-    "Fine-tuning & transfer learning",
-    "Object detection intro (YOLO family)"
-  ]},
-  { week:11, title:"NLP Basics → Modern NLP", items:[
-    "Tokenization & embeddings",
-    "Attention mechanism",
-    "Transformer architectures (BERT, RoBERTa, T5)"
-  ]},
-  { week:12, title:"Deep Learning Project", items:[
-    "Pick a DL project (object detection, text classification, OCR)",
-    "Training on GPU (or cloud GPU)",
-    "Deploy GPU-backed inference endpoint"
-  ]},
-  { week:13, title:"Transformer Architecture Deep Dive", items:[
-    "QKV & scaled dot-product attention",
-    "Positional encodings",
-    "Efficiency: sparse attention, distillation concepts"
-  ]},
-  { week:14, title:"LLM Fine-Tuning", items:[
-    "LoRA / QLoRA fundamentals",
-    "PEFT libraries & workflow",
-    "RAG: retrieval-augmented generation basics"
-  ]},
-  { week:15, title:"Generative Models", items:[
-    "Diffusion models overview",
-    "Stable Diffusion fine-tuning workflow",
-    "Image generation pipelines"
-  ]},
-  { week:16, title:"Advanced AI Project", items:[
-    "Project: AI customer support (RAG + embeddings)",
-    "Vector DB: Weaviate / Pinecone / Milvus",
-    "Frontend + API + monitoring"
-  ]},
-  { week:17, title:"Docker + CI/CD", items:[
-    "Write efficient Dockerfiles",
-    "Container best practices",
-    "GitHub Actions for CI/CD pipelines"
-  ]},
-  { week:18, title:"Kubernetes & Cloud", items:[
-    "K8s basics: pods, deployments, services",
-    "High-level GPU scheduling concepts",
-    "Deploy ML jobs to AWS/GCP (high-level)"
-  ]},
-  { week:19, title:"ML System Design", items:[
-    "Designing recommender systems",
-    "Real-time inference & serving patterns",
-    "Feature store architecture & design"
-  ]},
-  { week:20, title:"Full ML System Project", items:[
-    "Implement end-to-end ML SaaS (recommendations)",
-    "Feature store (Feast or custom)",
-    "Canary rollout + monitoring (Grafana)"
-  ]},
-  { week:21, title:"Portfolio Finalization", items:[
-    "Polish GitHub repos with READMEs and demos",
-    "Build portfolio website with demos",
-    "Craft 4–6 technical blog posts"
-  ]},
-  { week:22, title:"Resume & Referrals", items:[
-    "Create ATS-optimized 1-page resume",
-    "Reach out to recruiters & alumni",
-    "Network for referrals & internships"
-  ]},
-  { week:23, title:"Interview Training", items:[
-    "Strong DSA practice (mock interviews)",
-    "ML system design mock interviews",
-    "Behavioral storytelling (STAR method)"
-  ]},
-  { week:24, title:"Apply & Iterate", items:[
-    "Apply to 12–15 companies/week",
-    "Track applications in a spreadsheet",
-    "Collect feedback & iterate on interview process"
+
+  { week:5, title:"System Design + Production Readiness (Before March 15)", items:[
+    "Monolith vs Microservices tradeoffs",
+    "Design ML SaaS architecture diagram",
+    "Load testing (locust or k6)",
+    "CI/CD with GitHub Actions",
+    "Secrets management & environment configs",
+    "Final Project: Production-grade ML API with auth, API keys, Docker, EC2 deploy"
   ]}
 ];
+
 
 // localStorage keys
 const STORAGE_KEY = 'mlroadmap_v1';
@@ -645,3 +559,4 @@ setTimeout(()=> document.getElementById('jump-current').click(), 700);
 </script>
 </body>
 </html>
+
